@@ -25,8 +25,12 @@ def input_students
   while !name.empty? do
      # add the student hash to the array
     students << {name: name, cohort: : cohort, age: :"27 years old,", location: :London}
-  end
+    if students.count == 1
+      puts "Now we have #{student.count} student".center(50)
+    else 
     puts "Now we have #{students.count} students".center(50)
+    end
+  end
      # get another name from the user
     name = gets.chomp
     cohort = gets.chomp 
