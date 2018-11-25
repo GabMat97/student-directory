@@ -1,33 +1,45 @@
-
-#first we print the list of students
-def input_students
-  puts "Please enter the name of the students"
-  puts "To finish, just hit return twice"
-  students = []
-  name = gets.chomp
-  while !name.empty? do
-    students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
-    name = gets.chomp
-  end
-  students
-end
-students = input_students
 def print_header
   puts "The students of Villains Academy"
-  puts "-----------"
+  puts "-------------" 
+end 
+def letter_selector 
+  puts "Enter a letter to see students whose name begins with the letter" 
+  $letter = gets.chomp 
+end 
+def print(students) 
+  students.each_with_index do |student, i| 
+    puts "#{i+1}. #{student[:name]} (#{student[:cohort]} cohort)" 
+  end 
+end 
+def print_footer(names) 
+  puts "Overall, we have #{names.count} great students whose name starts with #{$letter}" 
 end
-def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+def input_students 
+  puts "Enter a letter to see students whose name begins with the letter" 
+  $letter = gets.chomp 
+  puts "Please enter the names of the students" 
+  puts "To finish, just hit return twice" 
+  # create an empty array 
+   students = []
+   # get the first name
+  name = gets.chomp 
+  # while the name is not empty, repeat this code 
+  while !name.empty? do 
+    if name.start_with? $letter 
+    # add the student hash to the array 
+    students << {name: name, cohort: :november} 
+    end 
+    puts "Now we have #{students.count} students" 
+    # get another name from the user 
+    name = gets.chomp 
   end
-  students.each_with_index do |student, i|
-    puts "#{i + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-  end
+   # return the array of students
+   if students.size > 0
+     students
+   else puts ""
+   end
 end
-def print_footer(names)
-  puts "Overall we have #{names.count} great students."
-end
+students = input_students
 print_header
 print(students)
 print_footer(students)
