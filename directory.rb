@@ -16,14 +16,23 @@ def input_students
   students = []
   # get the first name
   name = gets.chomp
+  puts "Enter a cohort for the student, to finish, just hit return twice" 
+  cohort = gets.chomp 
+  if cohort == "" 
+    cohort = "January" 
+  end 
    # while the name is not empty, repeat this code
   while !name.empty? do
      # add the student hash to the array
-    students << {name: name, cohort: :november, age: :"27 years old,", location: :London} 
+    students << {name: name, cohort: : cohort, age: :"27 years old,", location: :London}
   end
     puts "Now we have #{students.count} students".center(50)
      # get another name from the user
     name = gets.chomp
+    cohort = gets.chomp 
+    if cohort == "" 
+      cohort = "January" 
+    end 
    # return the array of students
   if students.size > 0
     students
