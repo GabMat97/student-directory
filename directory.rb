@@ -7,12 +7,8 @@ def letter_selector
   $letter = gets.chomp
 end
 def print(students) 
-  input = true
-  while input
-    students.each do |student| 
-    puts "#{student[:name]} (#{student[:cohort]} cohort)" 
-    end
-  input = false
+  students.each_with_index do |student| 
+    puts "#{student[:name]} #{student[:age]} #{student[:location]} (#{student[:cohort]} cohort)"
   end
 end
 def print_footer(names)
@@ -25,7 +21,7 @@ def input_students
   while !name.empty? do
     if name.length < 12
      # add the student hash to the array
-    students << {name: name, cohort: :november}
+    students << {name: name, cohort: :november, age: :"27 years old,", location: :London} 
     end
     puts "Now we have #{students.count} students"
      # get another name from the user
@@ -41,4 +37,3 @@ students = input_students
 print_header 
 print(students) 
 print_footer(students) 
-puts students.length
