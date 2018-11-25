@@ -15,9 +15,9 @@ def input_students
   puts "To finish, just hit return twice".center(50) 
   students = []
   # get the first name
-  name = gets.chomp
+  name = name = gets.tr("\r\n", "")
   puts "Enter a cohort for the student, to finish, just hit return twice" 
-  cohort = gets.chomp 
+  cohort = cohort = gets.tr("\r\n", "") 
   if cohort == "" 
     cohort = "January" 
   end 
@@ -32,8 +32,8 @@ def input_students
     end
   end
      # get another name from the user
-    name = gets.chomp
-    cohort = gets.chomp 
+    name = gets.tr("\r\n", "") 
+    cohort = gets.tr("\r\n", "") 
     if cohort == "" 
       cohort = "January" 
     end 
