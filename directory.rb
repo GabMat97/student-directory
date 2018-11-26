@@ -11,8 +11,8 @@ end
 def print_menu 
   puts "1. Input the students" 
   puts "2. Show the students" 
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list to a given file"
+  puts "4. Load the list from your chosen file"
   puts "9. Exit" # 9 because we'll be adding more items 
 end 
 def interactive_menu
@@ -85,7 +85,9 @@ def print_footer
   puts "Overall, we have #{@students.count} great students" 
 end 
 def save_students
-  file = File.open("students.csv", "w") 
+  puts "What do you want to save the file as?" 
+  saved_file = gets.chomp 
+  file = File.open(saved_file, "w")  
   @students.each do |student| 
     student_data = [student[:name], student[:cohort]] 
     csv_line = student_data.join(",") 
@@ -101,7 +103,9 @@ def load_students(filename = "students.csv")
   file.close 
 end
 def try_load_students 
-  ARGV != nil ? filename = ARGV.first : filename = "students.csv" 
+  puts "Enter a filename to load" 
+  loaded_file = gets.chomp 
+  ARGV != nil ? loaded_file = ARGV.first : filename = "students.csv" 
   return if filename.nil? 
   if File.exists?(filename) 
     load_students(filename) 
