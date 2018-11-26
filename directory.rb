@@ -1,3 +1,4 @@
+require "csv" 
 @students = [] 
 def load_students(filename = "students.csv") 
   file = File.open(filename, "r") 
@@ -63,7 +64,11 @@ def input_students
       cohort = "January" 
     end
     add_students(name, cohort) 
+    if @students.count > 1 
     puts "Now we have #{@students.count} students" 
+    elsif @students.count == 1 
+    puts "Now we have #{@students.count} student" 
+    end 
     name = STDIN.gets.chomp 
   end 
 end 
@@ -82,21 +87,23 @@ def print_student_list
   end
 end 
 def print_footer 
+  if @students.count > 1 
   puts "Overall, we have #{@students.count} great students" 
-end 
+  elsif @students.count == 1 
+  puts "Overall, we have #{@students.count} great student"
+  end 
+end
 def save_students
   puts "What do you want to save the file as?" 
   saved_file = gets.chomp 
-  file = File.open(saved_file, "w") do |file| 
+  CSV.open(saved_file, "w") do |csv|
   @students.each do |student| 
     student_data = [student[:name], student[:cohort]] 
-    csv_line = student_data.join(",") 
-    file.puts csv_line 
+    ccsv << student_data 
 end 
 def load_students(filename = "students.csv") 
-  file = File.open(filename, "r") do |file| 
-  file.readlines.each do |line| 
-  name, cohort = line.chomp.split(',') 
+  CSV.foreach(filename) do |line| 
+  name, cohort = line 
     add_students(name, cohort) 
   end 
 end
